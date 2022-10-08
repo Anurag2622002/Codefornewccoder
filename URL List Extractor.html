@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL List Extractor</title>
+</head>
+
+<body>
+    <div style="padding-bottom:100px">
+
+        <p>Create Image Js Arr string </p>
+        regExp
+        <textarea style="width:100%;" id="regExr"
+            rows="1">(https?:\/\/)(\s)?(www\.)?(\s?)(\w+\.)*([\w\-\s]+\/)*([\w-]+)\/?.(png|jpg|gif|PNG|JPG|GIF|Png|Jpg|Gif)</textarea>
+        <br><br>
+        Text:<br>
+        <textarea style="width: 507px; margin: 0px; height: 318px;" id="URLgarbage" rows="10"
+            spellcheck="false"> </textarea>
+        <br />
+        <button onclick="ExtractImgURL()">Extract url</button>
+        <button onclick="toArrayStr()">Convert To Array String</button>
+        <button onclick="removeDuplicate()">Remove Duplicate</button>
+
+        <button onclick="sortListByFileName()">Sort List By File Name</button>
+
+        <button onclick="sortList()">Sort List</button>
+
+
+        <p id="demo"></p>
+    </div>
+    <script>
+
+
+        function ExtractImgURL() {
+            var URLstr = document.getElementById("URLgarbage").value;
+
+            var regExps = document.getElementById("regExr").value;
+            var regExpForURL = new RegExp(regExps, 'g');
+
+            var urlArray = URLstr.match(regExpForURL);
+            var ModURLArray = [];
+            var count = 0;
+            document.getElementById("URLgarbage").value = "";
+
+            for (var i = 0; i < urlArray.length; i++) {
+
+                if (urlArray[i].match(/s0/)) {
+                    count = count + 1;
+                    var modurl = urlArray[i].replace("s0", "s0");
+                    var text = modurl + ",\n";
+                    if (count % 2 == 0) { text = modurl + ",\n\n" }
+
+                    document.getElementById("URLgarbage").value += text;
+
+                }
+
+            }
+            document.getElementById("demo").innerHTML = urlArray;
+        }
+
+
+        function toArrayStr() {
+            var URLstr = document.getElementById("URLgarbage").value;
+            var URLstr = URLstr.replace(/\n/g, "");
+            var urlArray = URLstr.split(',');
+            var nArr = [];
+            urlArray.forEach((elm) => {
+                nArr.push(elm.trim());
+            });
+            document.getElementById("URLgarbage").value = JSON.stringify(nArr);
+        }
+
+
+        function removeDuplicate() {
+            var URLstr = document.getElementById("URLgarbage").value;
+            var URLstr = URLstr.replace(/\n/g, "");
+            var urlArray = URLstr.split(',');
+
+            var newArr = [];
+            var asText = '';
+            for (let i = 0; i < urlArray.length; i++) {
+
+                if (newArr.indexOf(urlArray[i]) === -1) {
+                    newArr.push(urlArray[i]);
+                    asText += urlArray[i] + ', \n';
+                }
+
+            }
+            document.getElementById("URLgarbage").value = asText;
+        }
+
+
+        function sortList() {
+            var URLstr = document.getElementById("URLgarbage").value;
+            var URLstr = URLstr.replace(/\n/g, "");
+            var urlArray = URLstr.split(',');
+            var newArr = urlArray;
+            var asText = '';
+            newArr.sort();
+
+            for (let i = 0; i < newArr.length; i++) {
+                asText += newArr[i] + ', \n';
+            }
+
+            document.getElementById("URLgarbage").value = asText;
+        }
+
+
+        function sortListByFileName() {
+            var URLstr = document.getElementById("URLgarbage").value;
+            var URLstr = URLstr.replace(/\n/g, "");
+            var urlArray = URLstr.split(',');
+            var newArr = [];
+            var newObj = {};
+            var asText = '';
+            urlArray.forEach((elm) => {
+                let splitStr = elm.split('/');
+                let name = splitStr[splitStr.length - 1];
+                newArr.push(name);
+                newObj[name] = elm;
+            });
+            newArr.sort();
+
+            for (let i = 0; i < newArr.length; i++) {
+                asText += newObj[newArr[i]] + ', \n';
+            }
+
+            document.getElementById("URLgarbage").value = asText;
+        }
+    </script>
+</body>
+
+</html>
