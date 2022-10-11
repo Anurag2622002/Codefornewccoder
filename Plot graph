@@ -1,0 +1,18 @@
+import matplotlib.pyplot as plt
+
+# x-axis values 
+x = [2,4,7,9] 
+
+# Y-axis values 
+y = [3,5,8,10] 
+
+# Function to plot 
+plt.plot(x,y,marker='*') 
+
+plt.xlabel('x')
+
+plt.ylabel('y')
+
+plt.title('Line Plot')
+# function to show the plot 
+plt.show() 
