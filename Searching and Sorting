@@ -1,0 +1,229 @@
+#include<stdio.h>
+
+void selection(int ar[]);
+void bubble(int ar[]);
+void insertion(int ar[]);
+void display(int ar[]);
+void linear(int ar[]);
+void binary(int ar[]);
+
+int main()
+{
+	int ar[4],i,j,ch,tmp,min,index,k,select;
+	
+	//for insertion elements in array
+	printf("enter four elements of the array :-\n");
+	
+	for(i=0;i<4;i++)
+	{
+		scanf("%d",&ar[i]);
+	}
+	
+	
+	printf("enter your choice :-\n1.sorting\n2.searching\n");
+	scanf("%d",&select);
+	
+	//SORTING;-
+	if(select == 1)
+	{
+		printf("enter your choice ;-\n1.Selection Sort\n2.Bubble Sort\n3.Insertion Sort\n");
+		scanf("%d",&ch);
+		
+		//selection sort
+		if(ch==1)
+		{
+			selection(ar);	
+		}
+		
+		//Bubble sort
+		
+		else if(ch==2)
+		{
+			bubble(ar);
+		}
+		
+		//insertion sort
+		
+		else if(ch==3)
+		{
+			insertion(ar);
+		}
+		
+		else
+		{
+			printf("wrong choice ");
+		}
+	}
+	
+	//SEARCHING
+	else if(select == 2)
+	{
+		printf("enter your choice:-\n1.linear search\n2.binary search\n");
+		scanf("%d",&ch);
+		
+		if(ch==1)
+		{
+			linear(ar);
+		}
+		else if(ch == 2)
+		{
+			binary(ar);
+		}
+		else{
+			printf("wrong choice");
+		}
+	}
+	
+	else
+	{
+		printf("wrong choice");
+	}
+	
+	return 0;
+}
+
+//SELECTION SORT
+
+void selection(int ar[])
+{
+	int i,min,j,index,tmp;
+
+	for(i=0;i<3;i++)
+		{
+			min=ar[i];
+			for(j=i;j<4;j++)
+			{
+				if(ar[j] < min)
+				{
+					min=ar[j];
+					index=j;
+				}	
+			}
+			
+			tmp=ar[i];
+			ar[i]=min;
+			ar[index]=tmp;
+		}
+		
+		display(ar);
+}
+
+
+//BUBBLE SORT
+
+void bubble(int ar[])
+{
+	int i,j,tmp;
+		for(i=0;i<3;i++)
+		{
+			for(j=0;j<3-i;j++)
+			{
+				if(ar[j] > ar[j+1])
+				{
+					tmp=ar[j];
+					ar[j]=ar[j+1];
+					ar[j+1]=tmp;
+				}
+			}
+		}
+		
+		display(ar);
+}
+
+//INSERTION SORT
+
+void insertion(int ar[])
+{
+	int i,j,k,tmp;
+		for(i=1;i<4;i++)
+		{
+			for(j=0;j<i;j++)
+			{
+				if(ar[j]>ar[i])
+				{
+					tmp=ar[i];
+					for(k=i;k>j;k--)
+					{
+						ar[k]=ar[k-1];
+					}
+					ar[j]=tmp;
+				}
+			}
+		}
+	display(ar);	
+}
+
+//for displaying
+
+void display(int ar[])
+{
+	int i;
+	for(i=0;i<4;i++)
+		{
+				printf("%d\t",ar[i]);	
+		}
+}
+
+//LINEAR SEARCH
+
+void linear(int ar[])
+{
+	int num,i;
+	printf("enter the number to be searched ");
+	scanf("%d",&num);
+	for(i=0;i<4;i++)
+	{
+		if(ar[i] == num)
+		{
+			printf("The number is found at %dth position ",i+1);
+			break;
+		}
+	}
+}
+
+//BINARY SEARCH
+
+void binary(int ar[])
+{
+	int beg,end,mid,i,j,num,tmp;
+	beg=0;
+	end=4;
+	
+	printf("enter the number to be searched ");
+	scanf("%d",&num);
+	
+	for(i=0;i<4;i++)
+	{
+		for(j=i;j<4;j++)
+		{
+			if(ar[j] < ar[i])
+			{
+				tmp=ar[j];
+				ar[j]=ar[i];
+				ar[i]=tmp;
+			}
+		}
+	
+	}
+	
+	display(ar);
+	
+	printf("\nas for binary search the array is sorted first hence the array is \n");
+	while(1)
+	{
+		mid=(beg+end)/2;
+		if(ar[mid] == num)
+		{
+			printf("The number is found at %dth position ",mid+1);
+			break;
+		}
+		else if(ar[mid] > num)
+		{
+			end=mid-1;
+		}
+		else if(ar[mid] < num)
+		{
+			beg=mid+1;
+		}
+	}
+}
