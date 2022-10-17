@@ -1,0 +1,80 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Document</title>
+  </head>
+<body>
+  <style>
+          body {
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            background-color: #787;
+        }
+        .logo-cdpn {
+            width: 250px;
+            height: 250px;
+            background: black;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            position: relative;
+        }
+        .cntnr {
+            height: 80%;
+        }
+        .grp.grp-1 {
+            margin-top: 30px;
+        }
+        .grp.grp-2 {
+            width: 100%;
+            height: 50%;
+            margin-top: -15px;
+        }
+        .cntnr .lgo {
+            width: 80px;
+            height: 45px;
+            display: inline-block;
+            border: 15px solid white !important;
+        }
+        .cntnr .lgo.lg-1 {
+            transform:skewY(-30deg);
+            border-radius: 10px 10px 0 10px;
+        }
+        .cntnr .lgo.lg-2 {
+            transform:skewY(30deg);
+            margin-left: -15px;
+            border-radius: 10px;
+            border-radius: 10px 10px 10px 0;
+        }
+        .cntnr .lgo.lg-3 {
+            border-radius: 10px;
+            transform:skewY(30deg);
+            border-radius: 10px 0 10px 10px;
+        }
+        .cntnr .lgo.lg-4 {
+            margin-left: -15px;
+            border-radius: 0 10px 10px 10px;            
+            transform:skewY(-30deg);
+        }</style>
+  
+      <div class="logo-cdpn">
+        <div class="cntnr">
+            <div class="grp grp-1">
+                <div class="lgo lg-1"></div>
+                <div class="lgo lg-2"></div>
+            </div>
+            <div class="grp grp-2">
+                <div class="lgo lg-3"></div>
+                <div class="lgo lg-4"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
